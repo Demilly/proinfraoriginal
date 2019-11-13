@@ -20,13 +20,13 @@ public class ConfiguracaoSwaggerConfig {
 	@Bean
 	public Docket ApiDesafioIndra() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
-				.apis(RequestHandlerSelectors.basePackage("com.desafioIndra")).paths(PathSelectors.regex("/api.*"))
+				.apis(RequestHandlerSelectors.basePackage("com.ApiProInfra")).paths(PathSelectors.regex("/api.*"))
 				.build().apiInfo(metaInfo());
 	}
 
 	private ApiInfo metaInfo() {
 
-		ApiInfo apiInfo = new ApiInfo("Desafio Indra Java", "API REST Desafio Indra", "1.0", "Terms of Service",
+		ApiInfo apiInfo = new ApiInfo("Projeto Pro-Infra", "API REST Pro-Infra", "1.0", "Terms of Service",
 				new Contact("https://www.linkedin.com/in/demilly-ferreira/", "(83) 98707-7504", "demilly_@hotmail.com	"),
 				"Apache License Version 2.0", "https://www.apache.org/licesen.html", new ArrayList<>());
 

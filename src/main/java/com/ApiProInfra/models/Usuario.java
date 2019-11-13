@@ -23,17 +23,17 @@ public class Usuario implements Serializable {
 		
    @Id
    @GeneratedValue(strategy=GenerationType.IDENTITY)
-   private long id;
+   private Long id;
    
    private String nome;
    
    private String senha;
    
-   @Column(nullable = false, updatable = false)
-   @CreatedDate
-   private Date dtCreation;
-   
-   @LastModifiedDate
-   private Date dtUpdate;
+//   @Column(nullable = false, updatable = false)
+//   @CreatedDate
+//   private Date data_criacao;
+//   
+//   @LastModifiedDate
+//   private Date data_ultima_utilizacao;
    
 }
