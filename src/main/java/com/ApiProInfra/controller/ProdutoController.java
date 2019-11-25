@@ -1,5 +1,6 @@
 package com.ApiProInfra.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.validator.constraints.URL;
@@ -37,8 +38,11 @@ public class ProdutoController {
 			@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 
 			@RequestParam(value="orderBy", defaultValue="nome") String orderBy, 
 			@RequestParam(value="direction", defaultValue="ASC") String direction) {
-		String nomeDecoded = URL.decodeParam(nome);
-		List<Integer> ids = URL.decodeIntList(categorias);
+//		String nomeDecoded = URL.decodeParam(nome);
+	
+		String nomeDecoded = null;
+		List<Integer> ids = new ArrayList();
+
 		Page<Produto> list = service.search(nomeDecoded, ids, page, linesPerPage, orderBy, direction);
 		Page<ProdutoDTO> listDto = list.map(obj -> new ProdutoDTO(obj));  
 		return ResponseEntity.ok().body(listDto);

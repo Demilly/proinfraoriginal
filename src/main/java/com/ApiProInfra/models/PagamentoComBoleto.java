@@ -2,7 +2,7 @@ package com.ApiProInfra.models;
 
 import java.util.Date;
 
-import org.hibernate.annotations.Entity;
+import javax.persistence.Entity;
 
 import com.ApiProInfra.models.enums.EstadoPagamento;
 import com.fasterxml.jackson.annotation.JsonFormat;
