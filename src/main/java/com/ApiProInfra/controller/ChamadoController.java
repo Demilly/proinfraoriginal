@@ -3,7 +3,6 @@ package com.ApiProInfra.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.validator.constraints.URL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -13,25 +12,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ApiProInfra.dto.ProdutoDTO;
-import com.ApiProInfra.models.Produto;
-import com.ApiProInfra.service.ProdutoService;
+import com.ApiProInfra.dto.ChamadoDTO;
+import com.ApiProInfra.models.Chamado;
+import com.ApiProInfra.service.ChamadoService;
+
 
 @RestController
-@RequestMapping(value="/produtos")
-public class ProdutoController {
+@RequestMapping(value="/api/chamados")
+public class ChamadoController {
 	
 	@Autowired
-	private ProdutoService service;
+	private ChamadoService service;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Produto> find(@PathVariable Integer id) {
-		Produto obj = service.find(id);
+	public ResponseEntity<Chamado> find(@PathVariable Integer id) {
+		Chamado obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<Page<ProdutoDTO>> findPage(
+	public ResponseEntity<Page<ChamadoDTO>> findPage(
 			@RequestParam(value="nome", defaultValue="") String nome, 
 			@RequestParam(value="categorias", defaultValue="") String categorias, 
 			@RequestParam(value="page", defaultValue="0") Integer page, 
@@ -43,8 +43,8 @@ public class ProdutoController {
 		String nomeDecoded = null;
 		List<Integer> ids = new ArrayList();
 
-		Page<Produto> list = service.search(nomeDecoded, ids, page, linesPerPage, orderBy, direction);
-		Page<ProdutoDTO> listDto = list.map(obj -> new ProdutoDTO(obj));  
+		Page<Chamado> list = service.search(nomeDecoded, ids, page, linesPerPage, orderBy, direction);
+		Page<ChamadoDTO> listDto = list.map(obj -> new ChamadoDTO());  
 		return ResponseEntity.ok().body(listDto);
 	}
 
